@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天你爱我吗 · 打卡</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="floaties" id="floaties" aria-hidden="true"></div>
+    <div class="flames" id="flames" aria-hidden="true"></div>
+    <div class="fx" id="fx" aria-hidden="true"></div>
+    <main class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h1>今天你爱我吗</h1>
+            <p class="sub">极简打卡 · 只记录你今天的答案</p>
+          </div>
+        </div>
+        <div class="today" id="todayBadge" aria-live="polite"></div>
+      </header>
+
+      <section class="card checkin" aria-label="打卡">
+        <div class="q">
+          <div class="qTitle">现在，给今天一个答案。</div>
+          <div class="qHint">点击一次就算打卡，会被记录到下方列表。</div>
+        </div>
+
+        <div class="btnRow" id="btnArea">
+          <button class="btn love" id="loveBtn" type="button">
+            <span class="btnIcon" aria-hidden="true">♥</span>
+            <span id="loveLabel">爱Yejo</span>
+          </button>
+
+          <div class="noLoveStage" id="noLoveStage" aria-hidden="false">
+            <button class="btn noLove" id="noLoveBtn" type="button" title="想选这个？那就…认真一点。">
+              不爱
+            </button>
+            <div class="holdHint" id="holdHint">长按 1.2 秒才算数</div>
+          </div>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+
+      <section class="card cal" aria-label="日历">
+        <div class="calHead">
+          <h2>日历</h2>
+          <div class="calCtrl">
+            <button class="linkBtn" id="prevMonthBtn" type="button">上月</button>
+            <div class="calTitle" id="calTitle" aria-live="polite"></div>
+            <button class="linkBtn" id="nextMonthBtn" type="button">下月</button>
+          </div>
+        </div>
+
+        <div class="weekRow" aria-hidden="true">
+          <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+        </div>
+        <div class="calGrid" id="calGrid"></div>
+
+        <div class="calFoot">
+          <button class="linkBtn" id="icsBtn" type="button">导出到日历（.ics）</button>
+          <div class="calHint">有记录的日期会打红勾</div>
+        </div>
+      </section>
+
+      <section class="card logs" aria-label="记录">
+        <div class="logsHead">
+          <h2>记录</h2>
+          <div class="actions">
+            <button class="linkBtn" id="exportBtn" type="button">导出</button>
+            <button class="linkBtn danger" id="clearBtn" type="button">清空</button>
+          </div>
+        </div>
+        <ul class="list" id="list"></ul>
+        <div class="empty" id="empty">还没有记录。先点一下「爱」试试。</div>
+      </section>
+
+      <footer class="foot">
+        <div class="footRow">
+          <span>数据默认保存在本地；开启云同步后可跨设备。</span>
+          <button class="linkBtn" id="copyLinkBtn" type="button" title="复制你的专属链接">复制链接</button>
+        </div>
+        <div class="footLink" id="shareLink" aria-live="polite"></div>
+      </footer>
+    </main>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
