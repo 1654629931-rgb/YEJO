@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天你爱我吗 · 打卡</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="ambient" id="ambient" aria-hidden="true"></div>
+    <div class="burstLayer" id="burstLayer" aria-hidden="true"></div>
+    <div class="rainLayer" id="rainLayer" aria-hidden="true"></div>
+
+    <main class="wrap">
+      <header class="top card">
+        <div class="brand">
+          <div class="brandDot" aria-hidden="true"></div>
+          <div class="brandText">
+            <h1>今天你爱我吗</h1>
+            <p class="sub">一页温柔的小仪式，把喜欢认真记录下来。</p>
+          </div>
+        </div>
+        <div class="topMeta">
+          <div class="counterCard">
+            <span class="metaLabel">在一起已</span>
+            <strong class="metaValue" id="loveDaysCount">0</strong>
+            <span class="metaLabel">天</span>
+          </div>
+          <div class="today" id="todayBadge" aria-live="polite">今天：还没打卡</div>
+        </div>
+      </header>
+
+      <section class="card memories" aria-label="我们的回忆">
+        <div class="sectionTitle">
+          <h2>我们的回忆</h2>
+          <p>只留这一张，像被温柔记住的一瞬间，轻轻糊开一点更像回忆。</p>
+        </div>
+        <div class="photoCollage">
+          <figure class="photoHero">
+            <img src="./assets/photos/photo-main.jpg" alt="你们牵手的合照" loading="eager" />
+            <figcaption>2025.08.27 之后，连牵手都像在发光。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="card checkin" aria-label="打卡">
+        <div class="sectionTitle">
+          <h2>今天的答案</h2>
+          <p>点爱就会留下温柔痕迹，不爱要认真长按才能说出口。</p>
+        </div>
+
+        <div class="orbitStage" id="orbitStage">
+          <button class="btn loveBtn" id="loveBtn" type="button">
+            <span class="loveHalo" aria-hidden="true"></span>
+            <span class="heartGlyph" aria-hidden="true">❤</span>
+            <span class="loveLabel" id="loveLabel">爱Yejo</span>
+            <span class="loveSub" id="loveSub">点一下，今天就更爱一点</span>
+            <span class="loveCount" id="loveCount">今日 0 次</span>
+          </button>
+
+          <div class="noLoveOrbit" id="noLoveOrbit">
+            <div class="holdRing" id="holdRing" aria-hidden="true"></div>
+            <button class="btn noLoveBtn" id="noLoveBtn" type="button" title="长按 1.2 秒才算数">
+              <span class="noLoveEmoji" id="noLoveEmoji" aria-hidden="true">💔</span>
+              <span class="noLoveText" id="noLoveText">不爱</span>
+            </button>
+          </div>
+
+          <div class="holdHint" id="holdHint" aria-live="polite">长按 1.2 秒，才会认真说出“不爱”</div>
+        </div>
+      </section>
+
+      <section class="card cal" aria-label="日历">
+        <div class="calHead">
+          <div>
+            <h2>恋爱日历</h2>
+            <p class="calSub">有记录的日子会亮起来，连续爱会串成一条淡粉轨迹。</p>
+          </div>
+          <div class="monthOverview">
+            <div class="overviewItem">
+              <span class="overviewLabel">本月打卡</span>
+              <strong id="monthCount">0</strong>
+            </div>
+            <div class="overviewItem">
+              <span class="overviewLabel">连续爱</span>
+              <strong id="streakCount">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="calCtrl">
+          <button class="ghostBtn" id="prevMonthBtn" type="button">上月</button>
+          <div class="calTitle" id="calTitle" aria-live="polite"></div>
+          <button class="ghostBtn" id="nextMonthBtn" type="button">下月</button>
+        </div>
+
+        <div class="weekRow" aria-hidden="true">
+          <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+        </div>
+        <div class="calGrid" id="calGrid"></div>
+
+        <div class="dayPopover" id="dayPopover" hidden>
+          <div class="dayPopoverTitle" id="dayPopoverTitle"></div>
+          <div class="dayPopoverBody" id="dayPopoverBody"></div>
+        </div>
+
+        <div class="calFoot">
+          <button class="ghostBtn" id="icsBtn" type="button">导出到日历（.ics）</button>
+          <div class="calHint">粉色爱心代表爱，灰色碎心代表不爱，💍 是 8 月 27 日的约会提醒。</div>
+        </div>
+      </section>
+
+      <section class="card logs" aria-label="记录列表">
+        <div class="logsHead">
+          <div>
+            <h2>记录列表</h2>
+            <p class="logSub">改成按天整理的小回忆卡，不再把相同内容重复铺满整页。</p>
+          </div>
+          <div class="actions">
+            <button class="ghostBtn" id="exportBtn" type="button">导出</button>
+            <button class="ghostBtn" id="copyLinkBtn" type="button">复制链接</button>
+            <button class="ghostBtn danger" id="clearBtn" type="button">清空</button>
+          </div>
+        </div>
+
+        <ul class="list" id="list"></ul>
+        <div class="empty" id="empty">还没有记录。先点一下中间那颗爱心吧。</div>
+      </section>
+
+      <footer class="foot card">
+        <div class="footRow">
+          <div>
+            <strong>同步说明</strong>
+            <p>默认保存在浏览器本地；填好 `config.js` 里的云同步配置后，同一个链接可跨设备查看。</p>
+          </div>
+        </div>
+        <div class="footLink" id="shareLink" aria-live="polite"></div>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal" id="confirmModal" hidden>
+      <div class="modalCard">
+        <h3 id="confirmTitle">确认操作</h3>
+        <p id="confirmText">确定继续吗？</p>
+        <div class="modalActions">
+          <button class="ghostBtn" id="confirmCancelBtn" type="button">取消</button>
+          <button class="ghostBtn danger" id="confirmOkBtn" type="button">确定</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
